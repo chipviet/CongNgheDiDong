@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
-import { Text, View } from 'react-native'
-import styles from './styles'
+import React from 'react'
+import { View, Text } from 'react-native'
 
-export default class Details extends Component {
-    render() {
-        return (
-            <View >
-                <Text> Details Screen </Text>
-            </View>
-        )
-    }
+export default function DetailScreen({ route, navigation }) {
+    const { result } = route.params
+    return (
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Text style={{ fontSize: 20 }}>{result}</Text>
+        </View>
+    )
 }

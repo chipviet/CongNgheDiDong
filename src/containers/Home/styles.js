@@ -19,11 +19,12 @@ export default StyleSheet.create({
     width:'45%',
     height: 55,
     paddingVertical: 14,
+    marginTop: 15,
     backgroundColor: '#303856',
     marginBottom: 12,
     borderRadius: 8,
-    position: 'absolute',
-    bottom: 0,
+    // position: 'absolute',
+    // bottom: 0,
     justifyContent: 'center', 
     alignItems: 'center',
   },
@@ -34,6 +35,39 @@ export default StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     fontWeight: 'bold'
-  }
+  },
+
+  backgroudHeader: {
+    width: '100%',
+    height: 120,
+    borderBottomLeftRadius: 12,
+    borderBottomRightRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
+  txtCardHistory: {
+    fontFamily: 'Roboto-Medium',
+    fontSize: 22,
+    color: '#fff'
+  },
+
+  textInputFormStyle:{
+    marginTop: 20,
+  },
+
+
+  inputViewer: {
+    height: 50,
+    width: 350,
+    borderWidth: 1,
+    borderColor: '#5E6066',
+    borderRadius: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: '#ffffff',
+    opacity: 0.7,
+    marginVertical: 5,
+  },
 
 })

@@ -13,7 +13,7 @@ function App() {
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Home">
                 <Stack.Screen options={{ headerShown: false }} name="Home" component={HomeScreen} />
-                {/* <Stack.Screen options={{ headerShown: false }} name="Detail" component={DetailScreen} /> */}
+                 <Stack.Screen options={{ headerShown: false }} name="Detail" component={DetailScreen} /> 
             </Stack.Navigator>
         </NavigationContainer>
     );
