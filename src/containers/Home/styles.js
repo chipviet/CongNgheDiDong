@@ -5,7 +5,6 @@ import SizeMatters from '../../services/SizeMatters'
 export default StyleSheet.create({
   container: {
     flex:1,
-    alignItems: 'center'
   },
 
   wrapper: {
@@ -15,7 +14,6 @@ export default StyleSheet.create({
 
 
   btnAdd: {
-   
     width:'45%',
     height: 55,
     paddingVertical: 14,
@@ -54,6 +52,18 @@ export default StyleSheet.create({
 
   textInputFormStyle:{
     marginTop: 20,
+    alignItems: 'center',
+  },
+
+  itemWrapper: {
+    flexDirection: 'row',
+    // justifyContent: 'space-around',
+    paddingTop: 16,
+    paddingLeft: 30
+  },
+
+  touchable: {
+    paddingTop: 20,
   },
 
 
@@ -69,5 +79,15 @@ export default StyleSheet.create({
     opacity: 0.7,
     marginVertical: 5,
   },
+
+    imgBills:{
+    width: 60,
+    height: 60,
+  },
+
+  infoText: {
+    paddingLeft: 20
+  },
+
 
 })

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View ,TouchableOpacity,FlatList,TextInput} from 'react-native'
+import { Text, View ,TouchableOpacity,FlatList,TextInput,Icon, Image} from 'react-native'
 import styles from './styles'
 import LinearGradient from 'react-native-linear-gradient'
 
@@ -9,55 +9,51 @@ export default class HomeScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            a: 0,
-            b: 0,
-            c: 0,
-            list: []
+            data : [
+                {id: 1, phoneNumber: '0329456195', name :' Chip Việt'},
+                {id: 2, phoneNumber: '0986541231', name: 'Sang Phạm'},
+                {id: 3, phoneNumber: '0832834324', name: 'Vợ cả'},
+                {id: 4, phoneNumber: '0986541231', name: 'Cưng'},
+                {id: 5, phoneNumber: '0986541231', name: 'Vợ bé 1'},
+                {id: 6, phoneNumber: '0986541231', name: 'Vợ bé 2'},
+                {id: 7, phoneNumber: '0986541231', name: 'Vợ hàng xóm'},
+                {id: 7, phoneNumber: '0986541231', name: 'Chị trưởng phòng'},
+                {id: 7, phoneNumber: '0986541231', name: 'Vợ bạn thân'},
+                {id: 7, phoneNumber: '0986541231', name: 'Vợ bạn thân'},
+            ],
+            resultSearching: [],
         }
     }
 
-    handleCalculate = () => {
-        const {a,b,c,list} = this.state;
-        console.log("a" + a);
-        console.log("a" + b);
-        console.log("a" + c);
-        var result = ''
-        var delta =  ((b*b) -(4*a*c))
-        if (a == 0) {
-            result = a+"x^2 "+ "+ "+ b+"x "+ "+ "+ c+"=0"+ "\n"+ "phuong trinh co nghiem x = " + (-c / b);
+    handleSearch = (text) => {
+        if(text === '') {
+            this.setState({
+                resultSearching: this.state.data
+            })
         }
         else {
-            if (delta == 0) {
-                result = a+"x^2 "+ "+ "+ b+"x "+ "+ "+ c+"=0"+ "\n"+ "phuong trinh co nghiem kep x1 = x2 = " + (-b / 2 / a) + " ";
-            }
-            else {
-                if (delta > 0) {
-                    result = a+"x^2 "+ "+ "+ b+"x "+ "+ "+ c+"=0"+ "\n"+ "phuong trinh co nghiem x1 = " + ((-b - Math.sqrt(delta)) / 2 / a) + ", x2 = " + ((-b + Math.sqrt(delta)) / 2 / a) + " ";
-                }
-                else {
-                    result =a+"x^2 "+ "+ "+ b+"x "+ "+ "+ c+"=0"+ "\n"+ "phuong trinh vo nghiem";
-                }
-            }
+            this.setState({
+                resultSearching : this.state.data.filter(item => item.name.includes(text))
+            })
+            
         }
-
-        console.log(result)
-        const newArr = [...this.state.list]
-        newArr.unshift(result);
-        this.setState ({
-            list: newArr,
-            a: 0,
-            b: 0,
-            c: 0
-        })
+        
     }
 
     renderItem = ({item}) => {
         return (
             <TouchableOpacity
-                style={{ padding: 50, borderWidth: 0.2 }}
+                style={styles.touchable}
                 onPress={() => this.props.navigation.navigate('Detail', { result: item })}
             >
-                <Text style={{ fontSize: 20 }}>{item}</Text>
+                <View style={styles.itemWrapper}>
+                    <Image style={styles.imgBills} source={require('../../assets/icon-person.png')} />
+                    <View style= {styles.infoText}>
+                        <Text style={{ fontSize: 22 }}>{item.name}</Text>
+                        <Text style={{ fontSize: 18 }}>{item.phoneNumber}</Text>
+                    </View>
+                  
+                </View>       
             </TouchableOpacity>
         )
     }
@@ -66,49 +62,31 @@ export default class HomeScreen extends Component {
         return (
          <View style={styles.container}>
             <LinearGradient start={{x: 0, y: 0}} end={{x: 0, y: 1}} colors={['#303856', '#303856']} style={styles.backgroudHeader}>
-            <Text style={styles.txtCardHistory}>Giai Phuong Trinh Bac 2</Text>
+            <Text style={styles.txtCardHistory}>Contacts App</Text>
             </LinearGradient>
 
             <View style ={styles.textInputFormStyle}>
                 <TextInput
-                    keyboardType='numeric'
-                    value = {this.state.a}
                     style={styles.inputViewer}
                     placeholder="Nhap a"
-                    onChangeText={text => this.setState({a: text})}
-                ></TextInput>
-
-                <TextInput
-                    keyboardType='numeric'
-                    value = {this.state.b}
-                    style={styles.inputViewer}
-                    placeholder="Nhap b"
-                    onChangeText={text => this.setState({b: text})}
-                ></TextInput>
-
-                <TextInput
-                    keyboardType='numeric'
-                    value = {this.state.c}
-                    style={styles.inputViewer}
-                    placeholder="Nhap c"
-                    onChangeText={text => this.setState({c: text})}
+                    onChangeText={text => this.handleSearch(text)}
                 ></TextInput>
 
             </View>
        
-            <TouchableOpacity style={styles.btnAdd} onPress={this.handleCalculate}>
-                        <Text style={styles.btnAddText}>Calculate</Text>
-            </TouchableOpacity>
-
             <View>
                 <FlatList
-                data = {this.state.list}
+                data = {this.state.resultSearching}
                 renderItem = {this.renderItem}
                 keyExtractor = {(item,index) => index.toString()}
                 >
                     
                 </FlatList>
+                {/* <TouchableOpacity style={styles.btnAdd}>
+                        <Text style={styles.btnAddText}>Calculate</Text>
+            </TouchableOpacity> */}
             </View>
+            
          </View>   
            
         )
